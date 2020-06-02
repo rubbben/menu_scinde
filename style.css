@@ -1,0 +1,128 @@
+html,
+body{
+    width: 100vw; /*viewport width : 100% de la largeur d'ecran*/
+    height: 100vh;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: rgb(216,209,209);
+    display: flex;
+    align-items: center;        /*centrer sur Y*/
+    justify-content: center;    /*centrer sur X*/
+}
+
+h1{
+    font-size: 200px;
+    padding-bottom: 150px;
+}
+
+.btn{
+    position: fixed;
+    left: 40px;
+    top: 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;       
+    justify-content: center;
+    background: rgb(137, 131, 228);
+    z-index: 1000;
+}
+
+.menuIcon{
+    width: 40px;
+}
+
+.conteneurMenu{
+    background: linear-gradient(45deg, rgb(137,131,228), rgb(248,138,138));
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.listeMenu{
+    padding: 0;
+    margin-top: 240px;
+    font-size: 68px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column; /*met les uns au-dessus des autres*/
+    align-items: center;
+}
+
+.listeMenu a{
+    text-decoration: none;
+}
+
+.menuListItem{
+    position: relative;
+    margin-top: 20px;
+    color: transparent;
+    list-style-type: none;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.itemList{
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    color: rgb(19, 7, 71);
+    top: 0;
+    height: 49%;
+    transition: all 0.8s cubic-bezier(0.16,1.08,0.38,0.98);
+}
+
+.itemList span{
+    display: block;
+}
+
+.itemList + .itemList{ /*Cible le 1er .itemList apres le .itemList. C'est a dire le second*/
+    top: 48.9%;
+}
+
+.itemList + .itemList span{
+    transform: translateY(-49%);
+}
+
+.menuListItem:hover .itemList,
+.menuListItem:active .itemList{     /*Navigation avec la tabulation*/
+    color: #fff;
+    transform: skewX(12deg) translateX(5px);
+}
+
+.menuListItem:hover .itemList + .itemList,
+.menuListItem:active .itemList + .itemList{     
+    color: #fff;
+    transform: skewX(12deg) translateX(-5px);
+}
+
+.menuListItem::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 49%;
+    left: -10%;
+    right: -10%;
+    height: 4px;
+    border-radius: 4px;
+    margin-top: -2px;
+    background: #ff2c75;
+    transform: scale(0);
+    transition: transform 0.8s cubic-bezier(0.16,1.08,0.38,0.98);
+    z-index: 1;
+}
+
+.menuListItem:hover::before,
+.menuListItem:active::before{
+    transform: scale(1);
+}
